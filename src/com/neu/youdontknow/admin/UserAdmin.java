@@ -28,6 +28,12 @@ public class UserAdmin {
         return queryRunner.query(sql, new BeanListHandler<>(User.class), userId);
     }
 
+    public List<User> queryByUsername(String userName) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "select * from user where username=?";
+        return queryRunner.query(sql, new BeanListHandler<>(User.class), userName);
+    }
+
     public int updateById(int userId, User tmp) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "update user set username=?, password=?, email=? where id=?";
