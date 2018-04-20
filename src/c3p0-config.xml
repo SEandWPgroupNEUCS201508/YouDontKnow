@@ -3,7 +3,7 @@
 	<default-config>
 		<!-- 基本配置 -->
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/shabi</property>
+		<property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/ydk</property>
 		<property name="user">root</property>
 		<property name="password">enter</property>
 	

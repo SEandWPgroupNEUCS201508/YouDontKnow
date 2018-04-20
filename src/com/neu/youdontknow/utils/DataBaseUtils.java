@@ -15,6 +15,7 @@ public class DataBaseUtils {
         try {
             dataSource = new ComboPooledDataSource();
         } catch (Exception e) {
+            System.out.println("Unable to init the datasource.");
             e.printStackTrace();
         }
     }
@@ -30,6 +31,7 @@ public class DataBaseUtils {
             System.out.println("Error! Unable to get connection");
             e.printStackTrace();
         }
+        return null;
     }
 
     /**
