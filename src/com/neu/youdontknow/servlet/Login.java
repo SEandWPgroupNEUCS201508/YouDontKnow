@@ -33,12 +33,18 @@ public class Login extends HttpServlet {
 
             if(null != user) {
                 request.getSession().setAttribute("user", user);
-                response.sendRedirect("./index.jsp");
+                response.sendRedirect("/index");
             } else {
                 GlobalUtils.alert("User is not found when login");
-                response.sendRedirect("/login.html");
+                response.sendRedirect("/login");
             }
 
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=utf-8");
+        response.sendRedirect("./login.html");
     }
 }

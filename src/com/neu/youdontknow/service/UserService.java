@@ -30,4 +30,12 @@ public class UserService {
         }
         return new UserAdmin().addUser(newUser);
     }
+
+    public int updateUser(User tmp) throws SQLException {
+        if(null == tmp) {
+            GlobalUtils.alert("No user would be update");
+            return -1;
+        }
+        return new UserAdmin().updateById(tmp.getId(), tmp);
+    }
 }

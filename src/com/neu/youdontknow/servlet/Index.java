@@ -12,6 +12,6 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
-        response.sendRedirect("./");
+        response.sendRedirect("/index.jsp");
     }
 }

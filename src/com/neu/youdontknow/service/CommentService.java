@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class CommentService {
 
-    public int comment(Comment newComment) throws SQLException {
+    public int publishComment(Comment newComment) throws SQLException {
         if(null == newComment) return -1;
         return new CommentAdmin().addComment(newComment);
     }

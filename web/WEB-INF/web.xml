@@ -29,6 +29,16 @@
     <servlet-mapping>
         <servlet-name>signin</servlet-name>
         <url-pattern>/signin</url-pattern>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>userprofile</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.userpages.UserProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userprofile</servlet-name>
+        <url-pattern>/userprofile</url-pattern>
     </servlet-mapping>
 
 </web-app>

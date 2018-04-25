@@ -32,22 +32,13 @@ public class Signin extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        response.sendRedirect("/index");
+    }
 
-//        String username = request.getParameter("username");
-//        String password = request.getParameter("password");
-//        String email = request.getParameter("email");
-//
-//        user.setUsername(username);
-//        user.setPassword(GlobalUtils.encryptPassword(password));
-//        user.setEmail(email);
-//
-//        try {
-//            new UserAdmin().addUser(user);
-//        } catch (SQLException e) {
-//            GlobalUtils.alert("add user failed");
-//            e.printStackTrace();
-//        }
-
-        response.sendRedirect("index.jsp");
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        response.sendRedirect("register.html");
     }
 }
