@@ -28,7 +28,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>signin</servlet-name>
-        <url-pattern>/sigin</url-pattern>
+        <url-pattern>/signin</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -28,4 +28,10 @@ public class GlobalUtils {
         return src.equals(dest);
     }
 
+    public static String encryptPassword(String password) {
+        // TODO
+        // encrypt password
+        return password;
+    }
+
 }

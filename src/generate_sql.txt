@@ -19,3 +19,4 @@ create table article (
     content text,
     user_id int not null
 );
+show tables;
