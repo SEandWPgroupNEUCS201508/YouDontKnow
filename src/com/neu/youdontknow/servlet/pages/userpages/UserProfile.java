@@ -1,4 +1,4 @@
-package com.neu.youdontknow.servlet.userpages;
+package com.neu.youdontknow.servlet.pages.userpages;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

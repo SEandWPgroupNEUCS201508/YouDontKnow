@@ -34,11 +34,19 @@
 
     <servlet>
         <servlet-name>userprofile</servlet-name>
-        <servlet-class>com.neu.youdontknow.servlet.userpages.UserProfile</servlet-class>
+        <servlet-class>com.neu.youdontknow.servlet.pages.userpages.UserProfile</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>userprofile</servlet-name>
         <url-pattern>/userprofile</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>edit_article</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.ArticleEdit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>edit_article</servlet-name>
+        <url-pattern>/article/edit</url-pattern>
+    </servlet-mapping>
 </web-app>
