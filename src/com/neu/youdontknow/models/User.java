@@ -6,7 +6,7 @@ public class User {
     private String password;
     private String email;
 
-    public void setID(int id){
+    public void setId(int id){
         this.id = id;
     }
 
