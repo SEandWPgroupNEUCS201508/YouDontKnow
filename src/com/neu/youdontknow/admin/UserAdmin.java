@@ -14,7 +14,7 @@ public class UserAdmin {
     public int addUser(User user) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "insert into user(username, password, email) values(?, ?, ?)";
-        return queryRunner.update(sql, user.getUsername(), GlobalUtils.encryptPassword(user.getPassword()),
+        return queryRunner.update(sql, user.getUsername(), user.getPassword(),
                 user.getEmail());
     }
 

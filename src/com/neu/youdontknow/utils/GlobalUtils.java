@@ -9,7 +9,7 @@ public class GlobalUtils {
     private static String secretKey;
 
     static {
-        secretKey = "asdfqo7rg8qe&&*7q9hrg;aiybrlaHJK>lh@abervuo%^#dfa%&*(fawrgaeybfvk)_U:L?ybuk!@WDetde";
+        secretKey = "simple_test";
         desUtils = new DesUtils(secretKey);
     }
 
