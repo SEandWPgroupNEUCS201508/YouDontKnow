@@ -1,6 +1,6 @@
 package com.neu.youdontknow.models;
 
-public class Message {
+public class Message implements Model{
     private String source;
     private String destination;
     private String message;

@@ -1,6 +1,6 @@
 package com.neu.youdontknow.models;
 
-public class Article {
+public class Article implements Model {
     private int id;
     private String title;
     private String content;

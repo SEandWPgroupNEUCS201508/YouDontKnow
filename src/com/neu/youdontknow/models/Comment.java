@@ -1,6 +1,6 @@
 package com.neu.youdontknow.models;
 
-public class Comment {
+public class Comment implements Model {
     private int id;
     private String comment;
     private int user_id;

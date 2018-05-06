@@ -23,6 +23,20 @@ public class CommentAdmin {
         return queryRunner.update(sql, commentId);
     }
 
+    // cascade delete from user
+    public int deleteByUserId(int userId) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "delete from comment where user_id=?";
+        return queryRunner.update(sql, userId);
+    }
+
+    // cascade delete from article
+    public int deleteByArticleId(int articleId) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "delete from comment where article_id=?";
+        return queryRunner.update(sql, articleId);
+    }
+
     public List<Comment> queryById(int commentId) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "select * from comment where id=?";

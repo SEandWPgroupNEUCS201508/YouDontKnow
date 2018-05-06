@@ -39,6 +39,13 @@ public class ArticleAdmin {
         return queryRunner.update(sql, articleId);
     }
 
+    // cascade delete from user
+    public int deleteByUserId(int userId) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "delete from article where user_id=?";
+        return queryRunner.update(sql, userId);
+    }
+
 
     /**
      * query the article that id = ?
