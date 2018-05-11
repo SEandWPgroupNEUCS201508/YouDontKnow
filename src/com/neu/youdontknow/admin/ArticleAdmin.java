@@ -64,6 +64,12 @@ public class ArticleAdmin {
         return queryRunner.query(sql, new BeanListHandler<>(Article.class), articleId);
     }
 
+    public List<Article> queryByForum(String forum) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "select * from article where forum=?";
+        return queryRunner.query(sql, new BeanListHandler<>(Article.class), forum);
+    }
+
     /**
      * update the aritcle to the new one by article objects
      *
