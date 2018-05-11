@@ -12,9 +12,13 @@ public class CommentAdmin {
 
     public int addComment(Comment comment) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
-        String sql = "insert into comment(comment, user_id, article_id, comment_id) values(?, ?, ?, ?)";
+        String sql = "insert into " +
+                "comment(comment, user_id, article_id, comment_id, published_date, publised_time) " +
+                "values(?, ?, ?, ?, ?, ?)";
         return queryRunner.update(sql,
-                comment.getComment(), comment.getUser_id(), comment.getArticle_id(), comment.getComment_id());
+                comment.getComment(), comment.getUser_id(), comment.getArticle_id(), comment.getComment_id(),
+                comment.getPublished_date(), comment.getPublished_time()
+                );
     }
 
     public int deleteById(int commentId) throws SQLException {
