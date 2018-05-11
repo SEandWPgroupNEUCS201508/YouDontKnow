@@ -26,6 +26,10 @@ public class Chat {
         return session;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
     /**
      *
      * @param session
@@ -74,6 +78,7 @@ public class Chat {
                 if(destination.getSession().isOpen()){
                     destination.getSession().getBasicRemote().sendText(message);
                 }else{
+                    connections.remove(destination.getUserID());
                     new MessageService().saveMessage(obj);
                 }
             }else{
