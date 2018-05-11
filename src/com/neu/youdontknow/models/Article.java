@@ -8,6 +8,7 @@ public class Article implements Model {
     private String title;
     private String content;
     private int user_id;
+    private String forum;
     private Date published_date;
     private Time published_time;
 
@@ -25,6 +26,10 @@ public class Article implements Model {
 
     public int getUser_id() {
         return user_id;
+    }
+
+    public String getForum() {
+        return forum;
     }
 
     public Date getPublished_date() {
@@ -49,6 +54,10 @@ public class Article implements Model {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public void setForum(String forum) {
+        this.forum = forum;
     }
 
     public void setPublished_date(Date published_date) {

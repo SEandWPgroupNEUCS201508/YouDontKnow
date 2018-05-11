@@ -21,11 +21,11 @@ public class ArticleAdmin {
      */
     public int addArticle(Article article) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
-        String sql = "insert into article(title, content, user_id, published_date, published_time) " +
-                "values(?, ?, ?, ?, ?)";
+        String sql = "insert into article(title, content, user_id, forum, published_date, published_time) " +
+                "values(?, ?, ?, ?, ?, ?)";
         return queryRunner.update(
                 sql, article.getTitle(), article.getContent(), article.getUser_id(),
-                article.getPublished_date(), article.getPublished_time()
+                article.getForum(), article.getPublished_date(), article.getPublished_time()
                 );
     }
 
