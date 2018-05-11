@@ -4,6 +4,8 @@ import com.neu.youdontknow.models.Message;
 import com.neu.youdontknow.models.User;
 import com.google.gson.Gson;
 import com.neu.youdontknow.service.GetHttpSessionConfigurator;
+import com.neu.youdontknow.service.MessageService;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -15,13 +17,8 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/chat", configurator = GetHttpSessionConfigurator.class)
 public class Chat {
     private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-    private static HashMap<String, Chat> connections = new HashMap<String, Chat>();
-    private static String ERROR = "error";
-
-    private String userID;
-    private Session session;
-
+    private static HashMap<Integer, Session> connections = new HashMap<Integer, Session>();
+    private static Gson gson = new Gson();
 
     /**
      *
@@ -30,13 +27,18 @@ public class Chat {
      */
     @OnOpen
     public void onOpen(Session session, EndpointConfig config){
-        System.out.println("connecting........");
         User user = (User)((HttpSession)(config.getUserProperties().get("httpSession"))).getAttribute("user");
         if(user != null){
-            this.userID = (new Integer(user.getId())).toString();
-            this.session = session;
-            System.out.println("connecting.." + this.userID);
-            connections.put(this.userID, this);
+            connections.put(new Integer(user.getId()),session);
+            List<Message> messages =  new MessageService().queryMessage(user.getId());
+            for(int index = 0; index < messages.size(); index++){
+                String message = gson.toJson(messages.get(index), Message.class);
+                try {
+                    session.getBasicRemote().sendText(message);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
         }else{
             try {
                 session.getBasicRemote().sendText("error");
@@ -54,13 +56,20 @@ public class Chat {
      */
     @OnMessage
     public void onMessage(String message,Session session){
-        System.out.println(message);
+//        System.out.println(message);
         try {
-            Gson gson = new Gson();
             Message obj =  gson.fromJson(message,Message.class);
-
-            Chat target = connections.get(obj.getDestination());
-            target.session.getBasicRemote().sendText(message);
+            if(connections.containsKey(obj.getDestination())){
+                Session destinctSession = connections.get(obj.getDestination());
+                if(destinctSession.isOpen()){
+                    destinctSession.getBasicRemote().sendText(message);
+                }else{
+                    connections.remove(obj.getDestination());
+                    new MessageService().saveMessage(obj);
+                }
+            }else{
+                new MessageService().saveMessage(obj);
+            }
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -73,7 +82,7 @@ public class Chat {
      */
     @OnClose
     public void onClose(Session session){
-        connections.remove(this.userID);
+//        connections.remove();
 
     }
 
