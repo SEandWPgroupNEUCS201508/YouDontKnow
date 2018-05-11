@@ -11,7 +11,7 @@ create table comment (
     comment text,
     user_id int not null,
     article_id int not null,
-    comment_id int
+    comment_id int,
     published_date date,
     published_time time
 );
