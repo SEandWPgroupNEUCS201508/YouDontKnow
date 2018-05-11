@@ -18,7 +18,6 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        request.getSession();
 
         if(null == username || null == password || password.isEmpty() || username.isEmpty()) {
             GlobalUtils.alert("Username or password is empty");

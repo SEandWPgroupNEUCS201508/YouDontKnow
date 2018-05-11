@@ -17,7 +17,7 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        GlobalUtils.alert("Servlet: Register poster");
         request.setCharacterEncoding("utf-8");
         User user = new User();
         try {

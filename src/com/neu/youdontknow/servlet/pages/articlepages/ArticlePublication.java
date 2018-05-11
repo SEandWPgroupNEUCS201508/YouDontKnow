@@ -15,7 +15,7 @@ public class ArticlePublication extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("/404.htm");
+        response.sendRedirect("/publish_article.jsp");
     }
 
     @Override
@@ -26,10 +26,10 @@ public class ArticlePublication extends HttpServlet {
             BeanUtils.populate(article, request.getParameterMap());
             int state = new ArticleService().publish(article);
             if(1 == state) { // success
-                response.getWriter().print("success");
+                response.getWriter().print("success to publish the article");
             } else {
-                response.getWriter().print("failed to register");
-                GlobalUtils.alert("failed to register");
+                response.getWriter().print("failed to publish article");
+                GlobalUtils.alert("failed to publish article");
             }
         } catch (Exception e) {
             e.printStackTrace();

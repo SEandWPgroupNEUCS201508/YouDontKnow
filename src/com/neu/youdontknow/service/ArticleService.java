@@ -7,6 +7,7 @@ import com.neu.youdontknow.models.Model;
 import com.neu.youdontknow.utils.GlobalUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class ArticleService implements Service {
 
@@ -37,6 +38,16 @@ public class ArticleService implements Service {
         } else {
             return this.updateArticle(id, (Article)tmp);
         }
+    }
+
+    // public func
+
+    public List<Article> getForumPage(String forum, int articleNum) throws SQLException {
+        if(forum.isEmpty() || null == forum || 0 == articleNum) {
+            GlobalUtils.alert("No article will back for the forum: " + forum);
+            return null;
+        } else
+            return new ArticleAdmin().queryByForum(forum, articleNum);
     }
 
     // private func
