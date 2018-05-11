@@ -1,25 +1,25 @@
 package com.neu.youdontknow.models;
 
 public class Message implements Model{
-    private String source;
-    private String destination;
+    private int source;
+    private int destination;
     private String message;
     private String date;
     private String time;
 
-    public String getSource() {
+    public int getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(int source) {
         this.source = source;
     }
 
-    public String getDestination() {
+    public int getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
+    public void setDestination(int destination) {
         this.destination = destination;
     }
 

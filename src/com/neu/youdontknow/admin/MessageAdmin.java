@@ -15,7 +15,7 @@ public class MessageAdmin  {
                 message.getDate(), message.getTime());
     }
 
-    public List<Message> getMessage(String distination) throws SQLException {
+    public List<Message> getMessage(int distination) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "select * from message where distination=?";
         List<Message> list =  queryRunner.query(sql, new BeanListHandler<>(Message.class), distination);

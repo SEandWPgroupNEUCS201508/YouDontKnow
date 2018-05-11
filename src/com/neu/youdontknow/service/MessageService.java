@@ -15,7 +15,7 @@ public class MessageService {
         }
     }
 
-    public List<Message> queryMessage(String distination){
+    public List<Message> queryMessage(int distination){
         MessageAdmin messageAdmin = new MessageAdmin();
         List<Message> list = null;
         try {

@@ -42,8 +42,17 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>publish_article</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.ArticlePublication</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>publish_article</servlet-name>
+        <url-pattern>/publish_article</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>edit_article</servlet-name>
-        <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.ArticleEdit</servlet-class>
+        <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.ArticleEditor</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>edit_article</servlet-name>

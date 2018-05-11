@@ -17,18 +17,8 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/chat", configurator = GetHttpSessionConfigurator.class)
 public class Chat {
     private static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private static HashMap<String, Chat> connections = new HashMap<String, Chat>();
-
-    private String userID;
-    private Session session;
-
-    public Session getSession() {
-        return session;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
+    private static HashMap<Integer, Session> connections = new HashMap<Integer, Session>();
+    private static Gson gson = new Gson();
 
     /**
      *
@@ -39,11 +29,8 @@ public class Chat {
     public void onOpen(Session session, EndpointConfig config){
         User user = (User)((HttpSession)(config.getUserProperties().get("httpSession"))).getAttribute("user");
         if(user != null){
-            this.userID = (new Integer(user.getId())).toString();
-            this.session = session;
-            connections.put(this.userID, this);
-            List<Message> messages =  new MessageService().queryMessage(this.userID.toString());
-            Gson gson = new Gson();
+            connections.put(new Integer(user.getId()),session);
+            List<Message> messages =  new MessageService().queryMessage(user.getId());
             for(int index = 0; index < messages.size(); index++){
                 String message = gson.toJson(messages.get(index), Message.class);
                 try {
@@ -71,14 +58,13 @@ public class Chat {
     public void onMessage(String message,Session session){
 //        System.out.println(message);
         try {
-            Gson gson = new Gson();
             Message obj =  gson.fromJson(message,Message.class);
             if(connections.containsKey(obj.getDestination())){
-                Chat destination = connections.get(obj.getDestination());
-                if(destination.getSession().isOpen()){
-                    destination.getSession().getBasicRemote().sendText(message);
+                Session destinctSession = connections.get(obj.getDestination());
+                if(destinctSession.isOpen()){
+                    destinctSession.getBasicRemote().sendText(message);
                 }else{
-                    connections.remove(destination.getUserID());
+                    connections.remove(obj.getDestination());
                     new MessageService().saveMessage(obj);
                 }
             }else{
@@ -96,7 +82,7 @@ public class Chat {
      */
     @OnClose
     public void onClose(Session session){
-        connections.remove(this.userID);
+//        connections.remove();
 
     }
 
