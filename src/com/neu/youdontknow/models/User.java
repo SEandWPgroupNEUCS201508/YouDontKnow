@@ -1,6 +1,6 @@
 package com.neu.youdontknow.models;
 
-public class User {
+public class User implements Model{
     private int id;
     private String username;
     private String password;

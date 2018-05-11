@@ -12,15 +12,33 @@ public class CommentAdmin {
 
     public int addComment(Comment comment) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
-        String sql = "insert into comment(comment, user_id, article_id, comment_id) values(?, ?, ?, ?)";
+        String sql = "insert into " +
+                "comment(comment, user_id, article_id, comment_id, published_date, publised_time) " +
+                "values(?, ?, ?, ?, ?, ?)";
         return queryRunner.update(sql,
-                comment.getComment(), comment.getUser_id(), comment.getArticle_id(), comment.getComment_id());
+                comment.getComment(), comment.getUser_id(), comment.getArticle_id(), comment.getComment_id(),
+                comment.getPublished_date(), comment.getPublished_time()
+                );
     }
 
     public int deleteById(int commentId) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "delete from comment where id=?";
         return queryRunner.update(sql, commentId);
+    }
+
+    // cascade delete from user
+    public int deleteByUserId(int userId) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "delete from comment where user_id=?";
+        return queryRunner.update(sql, userId);
+    }
+
+    // cascade delete from article
+    public int deleteByArticleId(int articleId) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "delete from comment where article_id=?";
+        return queryRunner.update(sql, articleId);
     }
 
     public List<Comment> queryById(int commentId) throws SQLException {

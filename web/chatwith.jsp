@@ -10,7 +10,7 @@
 <head>
     <title>Chat Test</title>
     <script>
-        var socket = new WebSocket("ws://localhost:8080");
+        var socket = new WebSocket("ws://localhost:8080/chat");
         // accept the msg from server
         socket.onmessage=function(ev){
             var obj =  JSON.parse(ev.data);

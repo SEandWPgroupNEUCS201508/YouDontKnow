@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
-public class Signin extends HttpServlet {
+public class Register extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        GlobalUtils.alert("Servlet: Register poster");
         request.setCharacterEncoding("utf-8");
         User user = new User();
         try {

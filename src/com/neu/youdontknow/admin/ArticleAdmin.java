@@ -21,8 +21,12 @@ public class ArticleAdmin {
      */
     public int addArticle(Article article) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
-        String sql = "insert into article(title, content, user_id) values(?, ?, ?)";
-        return queryRunner.update(sql, article.getTitle(), article.getContent(), article.getUser_id());
+        String sql = "insert into article(title, content, user_id, forum, published_date, published_time) " +
+                "values(?, ?, ?, ?, ?, ?)";
+        return queryRunner.update(
+                sql, article.getTitle(), article.getContent(), article.getUser_id(),
+                article.getForum(), article.getPublished_date(), article.getPublished_time()
+                );
     }
 
     /**
@@ -39,6 +43,13 @@ public class ArticleAdmin {
         return queryRunner.update(sql, articleId);
     }
 
+    // cascade delete from user
+    public int deleteByUserId(int userId) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "delete from article where user_id=?";
+        return queryRunner.update(sql, userId);
+    }
+
 
     /**
      * query the article that id = ?
@@ -51,6 +62,12 @@ public class ArticleAdmin {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "select * from article where id=?";
         return queryRunner.query(sql, new BeanListHandler<>(Article.class), articleId);
+    }
+
+    public List<Article> queryByForum(String forum, int num) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "select * from article where forum=? limit ?";
+        return queryRunner.query(sql, new BeanListHandler<>(Article.class), forum, num);
     }
 
     /**
