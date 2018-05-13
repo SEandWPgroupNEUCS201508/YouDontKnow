@@ -16,7 +16,7 @@ public class ForumPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
-        String forum = request.getQueryString();
+        String forum = request.getParameter("forum");
 
         if(null == forum || forum.isEmpty()) {
             GlobalUtils.alert("Can't get the forum(null) from frontend.");
@@ -34,7 +34,7 @@ public class ForumPage extends HttpServlet {
                 GlobalUtils.alert("resList get for forum: " + forum + " is empty");
             else {
                 request.getSession().setAttribute("articleList", resList);
-                response.sendRedirect("/testForum.jsp");
+                response.sendRedirect("/forum.jsp");
             }
         }
     }

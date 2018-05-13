@@ -51,6 +51,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>forum</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.forumpages.ForumPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>forum</servlet-name>
+        <url-pattern>/forum</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>edit_article</servlet-name>
         <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.ArticleEditor</servlet-class>
     </servlet>
