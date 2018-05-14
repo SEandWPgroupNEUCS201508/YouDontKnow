@@ -87,11 +87,7 @@ public class Chat {
      */
     @OnClose
     public void onClose(Session session){
-//        connections.remove();
-//        System.out.println(session.getId());
-        if(connections.containsValue(session)){
-            connections.
-        }
+        System.out.println("A session is closed!");
     }
 
 

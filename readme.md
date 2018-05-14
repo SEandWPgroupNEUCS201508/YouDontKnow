@@ -147,3 +147,26 @@
 
 ### for chat and discuss service
 - todo
+
+在java中的JavaBean的字段格式如下
+```java
+    private int id;
+    private int source;
+    private int destination;
+    private String message;
+    private String time;
+```
+
+前后端交换数据的格式为
+```json
+{
+source: ,
+destination: ,
+message : ,
+time : 
+```
+**source 的获取用**
+**前端发给后端的数据不需要有time这个属性，后端返回的数据是有time的**
+**time字符串的格式`dow mon dd hh:mm:ss zzz yyyy`**
+
+* Example:Mon May 14 14:41:43 CST 2018
