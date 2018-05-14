@@ -86,15 +86,15 @@
 }
 ```
 
-#### 发表文章
+#### 发表文章 done
 - url: http://server_addr:port/publish_article
 - get: 返回一个基础的测试html
 - post: 参数title, content, user_id, forum,如果发布文章成功返回成功提示信息
 
-#### 更新文章
+#### 更新文章 done
 - url:http://server_addr:port/update_article
 - get:404
-- post: 参数title,content,user_id,forum 如果修改文章成功返回成功提示信息
+- post: 参数title,content,article_id,forum 如果修改文章成功返回成功提示信息
 
 ### for comment service
 #### 获取某文章下评论列表

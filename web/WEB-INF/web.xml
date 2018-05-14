@@ -44,15 +44,6 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>publish_article</servlet-name>
-        <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.ArticlePublication</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>publish_article</servlet-name>
-        <url-pattern>/publish_article</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>edit_article</servlet-name>
         <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.UpdateArticle</servlet-class>
     </servlet>
@@ -103,4 +94,26 @@
         <servlet-name>forum</servlet-name>
         <url-pattern>/forum</url-pattern>
     </servlet-mapping>
+
+    <!--### 发表文章-->
+    <servlet>
+        <servlet-name>publish_article</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.ArticlePublication</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>publish_article</servlet-name>
+        <url-pattern>/publish_article</url-pattern>
+    </servlet-mapping>
+
+    <!--### 更新文章-->
+    <servlet>
+        <servlet-name>update_article</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.articlepages.UpdateArticle</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_article</servlet-name>
+        <url-pattern>/update_article</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
