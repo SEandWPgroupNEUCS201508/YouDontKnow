@@ -210,3 +210,8 @@ private String time;
         <url-pattern>/forum</url-pattern>
     </servlet-mapping>
 ```
+- 测试 forum 为test, 长度为10的article list，结果如下
+
+```json
+{ "forum":test, "pre_last_id":2147483647, "limit_num":10, "article_node_list": [{"user_id":1,"article_id":18,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:50"},{"user_id":1,"article_id":17,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:49"},{"user_id":1,"article_id":16,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:49"},{"user_id":1,"article_id":15,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:48"},{"user_id":1,"article_id":14,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:47"},{"user_id":1,"article_id":13,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:46"},{"user_id":1,"article_id":12,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:45"},{"user_id":1,"article_id":11,"title":"curl","content":"curl_test","published_date":"2018-05-13","published_time":"22:04:34"},{"user_id":1,"article_id":10,"title":"1","content":"1","published_date":"2018-05-13","published_time":"22:02:05"},{"user_id":2,"article_id":9,"title":"1231","content":"1234","published_date":"2018-05-13","published_time":"22:01:10"}] }
+```
