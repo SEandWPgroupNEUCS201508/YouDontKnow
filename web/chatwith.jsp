@@ -22,8 +22,8 @@
             alert("send success");
             // construct a json
             var obj = JSON.stringify({
-                source:"1",
-                destination:"2",
+                source:"2",
+                destination:"1",
                 message:"hello"
             });
             socket.send(obj);

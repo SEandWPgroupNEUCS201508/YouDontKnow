@@ -135,6 +135,21 @@
     ]
 }
 ```
+***chenguang 认为的评论文章的评论数据交换格式***
+```json
+[
+	{
+		id : 1,
+	    comment : "too young to simple",
+	    user_id : 1,
+	    article_id : 1,
+	    comment_id : "?",
+	    published_date : ,
+	    published_time :
+	},
+	..., 
+]
+```
 需要注意的是，当评论的comment_id是一个非正数，代表它不回复任何评论，response_to_comment为空
 
 

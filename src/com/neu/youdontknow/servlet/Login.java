@@ -35,10 +35,10 @@ public class Login extends HttpServlet {
                 request.getSession().setAttribute("user", user);
                 Cookie userId = new Cookie("userid", new Integer(user.getId()).toString());
                 response.addCookie(userId);
-                response.sendRedirect("/index");
+                response.sendRedirect("/index.jsp");
             } else {
                 GlobalUtils.alert("User is not found when login");
-                response.sendRedirect("/login");
+                response.sendRedirect("/login.html");
             }
 
         }

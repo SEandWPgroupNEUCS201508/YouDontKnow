@@ -6,7 +6,6 @@
   </head>
   <body>
   <h1>Hello World</h1>
-  <a href="./login.html">log in</a><br>
   <a href="./register.html">register</a><br>
   <a href="./chatwith.jsp">chat with</a>
   </body>
