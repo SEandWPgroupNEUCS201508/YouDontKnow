@@ -133,6 +133,10 @@
     <!--### 发表评论-->
     <servlet>
         <servlet-name>publish_comment</servlet-name>
-        <servlet-class></servlet-class>
+        <servlet-class>com.neu.youdontknow.servlet.pages.comment.CommentPublication</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>publish_comment</servlet-name>
+        <url-pattern>/publish_comment</url-pattern>
+    </servlet-mapping>
 </web-app>

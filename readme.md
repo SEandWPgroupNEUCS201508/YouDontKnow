@@ -178,10 +178,10 @@ private String time;
 <!--new interface-->
     <!--############################## user service #########################-->
 
-    <!--#### 用户信息 done-->
+    <!--#### 用户信息 -->
     <servlet>
         <servlet-name>user_profile</servlet-name>
-        <servlet-class>com.neu.youdontknow.servlet.pages.userpages.UserProfile</servlet-class>
+        <servlet-class>com.neu.youdontknow.servlet.pages.user.UserProfile</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>user_profile</servlet-name>
@@ -189,10 +189,10 @@ private String time;
     </servlet-mapping>
 
 
-    <!--#### 更新用户信息 done-->
+    <!--#### 更新用户信息 -->
     <servlet>
         <servlet-name>update_user</servlet-name>
-        <servlet-class>com.neu.youdontknow.servlet.pages.userpages.UpdateUser</servlet-class>
+        <servlet-class>com.neu.youdontknow.servlet.pages.user.UpdateUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>update_user</servlet-name>
@@ -203,11 +203,63 @@ private String time;
     <!--### 获取板块动态-->
     <servlet>
         <servlet-name>forum</servlet-name>
-        <servlet-class>com.neu.youdontknow.servlet.pages.forumpages.ForumPage</servlet-class>
+        <servlet-class>com.neu.youdontknow.servlet.pages.forum.ForumPage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>forum</servlet-name>
         <url-pattern>/forum</url-pattern>
+    </servlet-mapping>
+
+    <!--### 发表文章-->
+    <servlet>
+        <servlet-name>publish_article</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.article.ArticlePublication</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>publish_article</servlet-name>
+        <url-pattern>/publish_article</url-pattern>
+    </servlet-mapping>
+
+    <!--### 更新文章-->
+    <servlet>
+        <servlet-name>update_article</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.article.UpdateArticle</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_article</servlet-name>
+        <url-pattern>/update_article</url-pattern>
+    </servlet-mapping>
+
+    <!--################################ comment service ###########################-->
+
+    <!--### 获取某文章下评论列表-->
+    <servlet>
+        <servlet-name>article_comment</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.article.ArticleComment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>article_comment</servlet-name>
+        <url-pattern>/article_comment</url-pattern>
+    </servlet-mapping>
+
+    <!--### 获取单条评论-->
+    <servlet>
+        <servlet-name>comment</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.comment.CommentPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>comment</servlet-name>
+        <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
+
+    <!--### 发表评论-->
+    <servlet>
+        <servlet-name>publish_comment</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.comment.CommentPublication</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>publish_comment</servlet-name>
+        <url-pattern>/publish_comment</url-pattern>
     </servlet-mapping>
 ```
 - 测试 forum 为test, 长度为10的article list，结果如下
