@@ -24,19 +24,19 @@
 
 
 ### for user service
-#### 登录
+#### 登录 done
 - url: http://server_addr:port/login
 - get: return a basic jsp
 - post:  参数　username, password, 如果登录成功，返回成功提示信息，否则返回失败原因（字符串）
 
 
-#### 注册
+#### 注册 done
 - url: http://server_addr:port/register
 - get: return a basic jsp
 - post: 参数　username, password, email, 如果注册成功，返回成功信息，否则返回失败原因
 
 
-#### 用户信息
+#### 用户信息 done
 - url: http://server_addr:port/user_profile
 - get: return a basic jsp
 - post: 参数　user_id, 如果找到了，会返回一个json(user_profile.jsp)，如果找到该用户返回该用户的所有信息
@@ -50,18 +50,18 @@
 否则返回一个获取失败的字符串
 
 
-#### 更新用户信息
+#### 更新用户信息 done
 - url: http:/server_addr:port/update_user
-- get: 返回一个基础html
+- get: 返回一个基础html(缺失，暂时404)
 - post: 参数　user_id, origin_password(检查用户密码的正确性，如果错误，后端会拒绝修改用户信息), new_email, new_password,如果更新成功，返回一个提示成功信息，否则返回一个失败提示信息
 
 
 
 ### for the article service
 
-#### 获取板块动态
+#### 获取板块动态 done
 - url: http://server_addr:port/forum
-- get:参数  forum, last_id（要求最后一个article的id)，limit_num(限制文章数) 返回一个基础的测试html
+- get:返回模块为test的10个最新的文章的一个测试jsp
 - post:参数　forum, last_id，limit_num如果成功，返回一个json(forum.jsp)，否则返回一个提示失败的字符串
 ```json
 {
@@ -69,25 +69,20 @@
     "pre_last_id":num,
     "limit_num":num,
     "article_node_list":[{
-        "user_id": id,
-        "username": "eg",
-        "email":"email",
-        "article_id":num,
+        "user_id":1,
+        "article_id":1,
         "title":"eg",
         "content":"eg",
         "published_date":"date",
         "published_time":"time"
     }, {
-        "user_id": id,
-        "username": "eg",
-        "email":"email",
-        "article_id":num,
+        "user_id":1,
+        "article_id":2,
         "title":"eg",
         "content":"eg",
         "published_date":"date",
         "published_time":"time"
-    } ...(忽略后续)
-    ]
+    }]
 }
 ```
 
@@ -112,46 +107,39 @@
     "comment_list": [{
         "user_id":1,
         "comment_id":1,
-        "response_to_comment": {
-            "user_id":1,
-            "comment_id":0,
-            "comment":"我是被回复的评论",
-            "published_date":"date",
-            "published_time":"time"
-        },
+        "response_to_comment":0,
         "comment":"我是评论本体",
         "published_date":"date",
         "published_time":"time"
     }, {
         "user_id":1,
-        "comment_id":1,
-        "response_to_comment": {
-
-        },
+        "comment_id":2,
+        "response_to_comment":1,
         "comment":"我是评论本体",
         "published_date":"date",
         "published_time":"time"
-    }, ....(忽略)
+    }, ....
     ]
 }
 ```
-***chenguang 认为的评论文章的评论数据交换格式***
-```json
-[
-	{
-		id : 1,
-	    comment : "too young to simple",
-	    user_id : 1,
-	    article_id : 1,
-	    comment_id : "?",
-	    published_date : ,
-	    published_time :
-	},
-	..., 
-]
-```
-需要注意的是，当评论的comment_id是一个非正数，代表它不回复任何评论，response_to_comment为空
 
+修正一下，response_to_comment,现在代表的是该评论回复的评论的ID，如果它是一个非正数，那么代表这条评论不回复任何评论，comment_id是该评论本身的id
+
+### 获取单条评论
+- 因为在上面的情况中，被回复的评论仅以ID形式给前端，但是如果前端要获取这条回复的话，需要这条接口
+- url: http://serer_addr:port/comment
+- get: 404
+- post: 参数comment_id，如果查找失败，返回错误信息，如果成功，返回json如下
+```json
+{
+    "user_id":1,
+    "comment_id":1,
+    "response_to_comment":0,
+    "comment":"我是评论本体",
+    "published_date":"date",
+    "published_time":"time"
+}
+```
 
 #### 发表评论
 - url:http://server_addr:port/publish_comment
@@ -161,7 +149,7 @@
 
 
 ### for chat and discuss service
-- url:ws://server_addr:port/chat
+- url:ws://server_addr:port/chat
 Message在java中的JavaBean的字段格式如下
 ```java
 private int id;//数据库自增的字段
@@ -184,3 +172,41 @@ private String time;
 **source 的获取用**
 **前端发给后端的数据不需要有time这个属性，后端返回的数据是有time的**
 **time字符串的格式`dow mon dd hh:mm:ss zzz yyyy`**
+
+# log web.xml日志
+```xml
+<!--new interface-->
+    <!--############################## user service #########################-->
+
+    <!--#### 用户信息 done-->
+    <servlet>
+        <servlet-name>user_profile</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.userpages.UserProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>user_profile</servlet-name>
+        <url-pattern>/user_profile</url-pattern>
+    </servlet-mapping>
+
+
+    <!--#### 更新用户信息 done-->
+    <servlet>
+        <servlet-name>update_user</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.userpages.UpdateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_user</servlet-name>
+        <url-pattern>/update_user</url-pattern>
+    </servlet-mapping>
+
+    <!--################################ article service ###########################-->
+    <!--### 获取板块动态-->
+    <servlet>
+        <servlet-name>forum</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.forumpages.ForumPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>forum</servlet-name>
+        <url-pattern>/forum</url-pattern>
+    </servlet-mapping>
+```

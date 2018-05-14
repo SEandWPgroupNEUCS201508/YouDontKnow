@@ -64,10 +64,10 @@ public class ArticleAdmin {
         return queryRunner.query(sql, new BeanListHandler<>(Article.class), articleId);
     }
 
-    public List<Article> queryByForum(String forum, int num) throws SQLException {
+    public List<Article> queryByForum(String forum, int num, int lastId) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
-        String sql = "select * from article where forum=? order by id desc limit ?";
-        return queryRunner.query(sql, new BeanListHandler<>(Article.class), forum, num);
+        String sql = "select * from article where forum=? and id<? order by id desc limit ?";
+        return queryRunner.query(sql, new BeanListHandler<>(Article.class), forum, lastId, num);
     }
 
     /**
