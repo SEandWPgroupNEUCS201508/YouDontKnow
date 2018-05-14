@@ -6,7 +6,7 @@
   Time: 12:06 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="application/json;charset=UTF-8" language="java" %>
 <%
     String forum = (String)(request.getSession().getAttribute("forum"));
     int pre_last_id = (int)(request.getSession().getAttribute("last_id"));

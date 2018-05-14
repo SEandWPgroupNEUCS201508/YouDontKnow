@@ -6,7 +6,7 @@
   Time: 2:18 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="application/json;charset=UTF-8" language="java" %>
 <%
     int article_id = (int)(request.getSession().getAttribute("article_id"));
     List<Comment> comments = (List<Comment>)(request.getSession().getAttribute("comment_list"));

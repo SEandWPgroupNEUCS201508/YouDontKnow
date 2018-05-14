@@ -38,8 +38,8 @@
 
 #### 用户信息 done
 - url: http://server_addr:port/user_profile
-- get: return a basic jsp
-- post: 参数　user_id, 如果找到了，会返回一个json(user_profile.jsp)，如果找到该用户返回该用户的所有信息
+- get: 默认返回已登录用户自己的信息
+- post: 如果找到了，会返回一个json(user_profile.jsp)，如果找到该用户返回该用户的所有信息
 ```json
 {
 	"user_id": id,
@@ -47,7 +47,7 @@
     "email":"email"
 }
 ```
-否则返回一个获取失败的字符串
+否则返回一个获取失败的字符串，(这个接口还要继续完善)
 
 
 #### 更新用户信息 done
@@ -97,7 +97,7 @@
 - post: 参数title,content,article_id,forum 如果修改文章成功返回成功提示信息
 
 ### for comment service
-#### 获取某文章下评论列表
+#### 获取某文章下评论列表 done without testing
 - url:http://server_addr:port/article_comment
 - get: 一个测试结果html [未完成]
 - post: 参数article_id返回一个json(article_comment.jsp)
@@ -125,14 +125,14 @@
 
 修正一下，response_to_comment,现在代表的是该评论回复的评论的ID，如果它是一个非正数，那么代表这条评论不回复任何评论，comment_id是该评论本身的id
 
-### 获取单条评论
+### 获取单条评论 done without testing
 - 因为在上面的情况中，被回复的评论仅以ID形式给前端，但是如果前端要获取这条回复的话，需要这条接口
 - url: http://serer_addr:port/comment
 - get: 404
 - post: 参数comment_id，如果查找失败，返回错误信息，如果成功，返回json如下
 ```json
 {
-    "user_id":1,
+    "user_id":1,	
     "comment_id":1,
     "response_to_comment":0,
     "comment":"我是评论本体",
@@ -141,7 +141,7 @@
 }
 ```
 
-### 发表评论
+### 发表评论 done without testing
 - url:http://server_addr:port/publish_comment
 - get: 404
 - post: 参数user_id, article_id, comment_id, comment, 其中, user_id是发表该评论的用户id; comment_id代表是被回复的评论的id, 如果没有置0, article_id代表被评论的文章. 如果评论发表成功, 后端发出成功提示信息，否则发送失败信息

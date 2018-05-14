@@ -113,11 +113,26 @@
     <!--### 获取某文章下评论列表-->
     <servlet>
         <servlet-name>article_comment</servlet-name>
-        <servlet-class></servlet-class>
+        <servlet-class>com.neu.youdontknow.servlet.pages.article.ArticleComment</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>article_comment</servlet-name>
         <url-pattern>/article_comment</url-pattern>
     </servlet-mapping>
 
+    <!--### 获取单条评论-->
+    <servlet>
+        <servlet-name>comment</servlet-name>
+        <servlet-class>com.neu.youdontknow.servlet.pages.comment.CommentPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>comment</servlet-name>
+        <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
+
+    <!--### 发表评论-->
+    <servlet>
+        <servlet-name>publish_comment</servlet-name>
+        <servlet-class></servlet-class>
+    </servlet>
 </web-app>
