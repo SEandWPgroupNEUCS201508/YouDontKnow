@@ -35,15 +35,13 @@
     <%--private String forum;--%>
     <%--private Date published_date;--%>
     <%--private Time published_time;    --%>
-    <label for="title">article title</label>
+        <label for="title">article title</label>
         <input type="text" id="title" placeholder="this is title" name="title"><br>
-    <label for="content">content</label>
-    <input type="text" id="content" placeholder="this is content" name="content"><br>
-    <input type="hidden" value="<%out.print(user.getId());%>" id="user_id" name="user_id">
-    <input type="hidden" value="test" id="forum" name="forum">
-    <input type="date" name="publish_date" id="published_date"><br>
-    <input type="time" name="publish_time" id="published_time"><br>
-        <input type="submit"  width="100" value="登录" name="submit" border="0"><br>
+        <label for="content">content</label>
+        <input type="text" id="content" placeholder="this is content" name="content"><br>
+        <input type="hidden" value="<%out.print(user.getId());%>" id="user_id" name="user_id">
+        <input type="hidden" value="test" id="forum" name="forum">
+        <input type="submit"  width="100" value="publish" name="submit" border="0"><br>
 </form>
 </body>
 </html>

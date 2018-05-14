@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 
 public class ArticlePublication extends HttpServlet {
 
@@ -24,6 +26,13 @@ public class ArticlePublication extends HttpServlet {
         Article article = new Article();
         try {
             BeanUtils.populate(article, request.getParameterMap());
+            // test
+            if(null == article) {
+                GlobalUtils.alert("Can't get article from request!");
+            } else {
+                article.setPublished_date(new Date(System.currentTimeMillis()));
+                article.setPublished_time(new Time(System.currentTimeMillis()));
+            }
             int state = new ArticleService().publish(article);
             if(1 == state) { // success
                 response.getWriter().print("success to publish the article");
