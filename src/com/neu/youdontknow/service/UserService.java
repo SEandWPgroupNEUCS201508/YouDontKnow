@@ -8,6 +8,8 @@ import com.neu.youdontknow.models.Model;
 import com.neu.youdontknow.models.User;
 import com.neu.youdontknow.utils.GlobalUtils;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -44,19 +46,15 @@ public class UserService implements Service {
 
     // public service method
 
-    public User login(String username, String password) throws SQLException {
+    public User login(String username, String password) throws SQLException, IOException {
         UserAdmin userAdmin = new UserAdmin();
         List<User> user = userAdmin.queryByUsername(username);
         // if more than one users have the same username
         if(user.size() != 1) {
             GlobalUtils.raiseSQLError("More than one users have the same username, WTF?");
         } else if(false == GlobalUtils.checkPassword(password, user.get(0).getPassword())) {
-//            GlobalUtils.alert("password: " + password);
-//            GlobalUtils.alert("dest: " + user.get(0).getPassword());
-//            GlobalUtils.alert("decrypt: " + GlobalUtils.decryptPassword(user.get(0).getPassword()));
             GlobalUtils.alert("Password error");
         } else return user.get(0);
-
         return null; // satisfy the Compiler
     }
 
@@ -68,11 +66,6 @@ public class UserService implements Service {
         // encrypt the password of the user obj that will be storaged in the database
         String srcPassword = newUser.getPassword();
         newUser.setPassword(GlobalUtils.encryptPassword(srcPassword));
-
-        // test
-//        GlobalUtils.alert("sr: " + srcPassword);
-//        GlobalUtils.alert("en: " + GlobalUtils.encryptPassword(srcPassword) + " " + newUser.getPassword());
-//        GlobalUtils.alert("de: " + GlobalUtils.decryptPassword(newUser.getPassword()));
 
         return new UserAdmin().addUser(newUser);
     }

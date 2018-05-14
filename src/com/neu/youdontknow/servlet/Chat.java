@@ -13,6 +13,7 @@ import java.util.*;
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.util.Date;
 
 @ServerEndpoint(value = "/chat", configurator = GetHttpSessionConfigurator.class)
 public class Chat {
@@ -27,6 +28,7 @@ public class Chat {
      */
     @OnOpen
     public void onOpen(Session session, EndpointConfig config){
+        System.out.println("user is comming");
         User user = (User)((HttpSession)(config.getUserProperties().get("httpSession"))).getAttribute("user");
         if(user != null){
             connections.put(new Integer(user.getId()),session);
@@ -41,6 +43,7 @@ public class Chat {
             }
         }else{
             try {
+                System.out.println("reject");
                 session.getBasicRemote().sendText("error");
                 session.close();
             }catch (IOException e){
@@ -59,6 +62,8 @@ public class Chat {
 //        System.out.println(message);
         try {
             Message obj =  gson.fromJson(message,Message.class);
+            obj.setTime(new Date().toString());
+            message = gson.toJson(obj, Message.class);
             if(connections.containsKey(obj.getDestination())){
                 Session destinctSession = connections.get(obj.getDestination());
                 if(destinctSession.isOpen()){
@@ -82,9 +87,9 @@ public class Chat {
      */
     @OnClose
     public void onClose(Session session){
-//        connections.remove();
-
+        System.out.println("A session is closed!");
     }
+
 
     /**
      *

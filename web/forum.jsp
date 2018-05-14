@@ -10,7 +10,7 @@
 <html>
 <head>
     <%
-        List<Article> articleList = (List<Article>)request.getSession().getAttribute("articleList");
+        List<Article> articleList = (List<Article>)request.getSession().getAttribute("article_list");
     %>
     <title>Test</title>
 </head>

@@ -6,6 +6,7 @@ import com.neu.youdontknow.models.Model;
 import com.neu.youdontknow.utils.GlobalUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class CommentService implements Service {
 
@@ -36,6 +37,14 @@ public class CommentService implements Service {
         } else {
             return this.updateComment(id, (Comment)tmp);
         }
+    }
+
+    // public func
+    public List<Comment> getArticleComments(int articleId) throws SQLException {
+        if(articleId <= 0){
+            GlobalUtils.alert("No comment will be back for the article!");
+            return null;
+        } else return new CommentAdmin().queryByArticleId(articleId);
     }
 
     // private func

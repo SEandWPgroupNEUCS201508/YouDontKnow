@@ -10,16 +10,16 @@ import java.util.List;
 public class MessageAdmin  {
     public int save(Message message) throws SQLException{
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
-        String sql = "insert into message values(?, ?, ?, ?, ?)";
-        return queryRunner.update(sql, message.getSource(), message.getDestination(), message.getMessage(),
-                message.getDate(), message.getTime());
+        String sql = "insert into message(source, destination, message, time) values(?, ?, ?, ?)";
+        return queryRunner.update(sql, message.getSource(), message.getDestination(),
+                message.getMessage(), message.getTime());
     }
 
     public List<Message> getMessage(int distination) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
-        String sql = "select * from message where distination=?";
+        String sql = "select * from message where destination=?";
         List<Message> list =  queryRunner.query(sql, new BeanListHandler<>(Message.class), distination);
-        sql = "delete from message where distination=?";
+        sql = "delete from message where destination=?";
         queryRunner.update(sql, distination);
         return list;
     }

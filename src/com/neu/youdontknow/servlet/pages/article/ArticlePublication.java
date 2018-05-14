@@ -1,8 +1,7 @@
-package com.neu.youdontknow.servlet.pages.articlepages;
+package com.neu.youdontknow.servlet.pages.article;
 
 import com.neu.youdontknow.models.Article;
 import com.neu.youdontknow.service.ArticleService;
-import com.neu.youdontknow.service.UserService;
 import com.neu.youdontknow.utils.GlobalUtils;
 import org.apache.commons.beanutils.BeanUtils;
 

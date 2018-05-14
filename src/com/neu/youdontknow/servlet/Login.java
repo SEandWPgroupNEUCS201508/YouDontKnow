@@ -4,6 +4,7 @@ import com.neu.youdontknow.models.User;
 import com.neu.youdontknow.service.UserService;
 import com.neu.youdontknow.utils.GlobalUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,10 +33,12 @@ public class Login extends HttpServlet {
 
             if(null != user) {
                 request.getSession().setAttribute("user", user);
-                response.sendRedirect("/index");
+                Cookie userId = new Cookie("userid", new Integer(user.getId()).toString());
+                response.addCookie(userId);
+                response.sendRedirect("/index.jsp");
             } else {
                 GlobalUtils.alert("User is not found when login");
-                response.sendRedirect("/login");
+                response.sendRedirect("/login.html");
             }
 
         }

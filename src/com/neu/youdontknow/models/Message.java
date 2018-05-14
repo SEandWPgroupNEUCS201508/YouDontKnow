@@ -1,11 +1,18 @@
 package com.neu.youdontknow.models;
 
 public class Message implements Model{
+    private int id;
     private int source;
     private int destination;
     private String message;
-    private String date;
     private String time;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getSource() {
         return source;
@@ -31,16 +38,8 @@ public class Message implements Model{
         this.message = message;
     }
 
-    public String getDate() {
-        return date;
-    }
-
     public String getTime() {
         return time;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public void setTime(String time) {

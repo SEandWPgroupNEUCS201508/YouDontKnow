@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="json-taglib-0.4.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/json-taglib-0.4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
