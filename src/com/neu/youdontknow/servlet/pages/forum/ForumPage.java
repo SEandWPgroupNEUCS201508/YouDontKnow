@@ -1,10 +1,8 @@
-package com.neu.youdontknow.servlet.pages.forumpages;
+package com.neu.youdontknow.servlet.pages.forum;
 
-import com.neu.youdontknow.admin.ArticleAdmin;
 import com.neu.youdontknow.models.Article;
 import com.neu.youdontknow.service.ArticleService;
 import com.neu.youdontknow.utils.GlobalUtils;
-import jdk.nashorn.internal.objects.Global;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

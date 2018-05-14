@@ -99,8 +99,8 @@
 ### for comment service
 #### 获取某文章下评论列表
 - url:http://server_addr:port/article_comment
-- get: 404
-- post: 参数article_id返回一个json(comment_list.jsp)
+- get: 一个测试结果html [未完成]
+- post: 参数article_id返回一个json(article_comment.jsp)
 ```json
 {
     "article_id":1,
@@ -141,7 +141,7 @@
 }
 ```
 
-#### 发表评论
+### 发表评论
 - url:http://server_addr:port/publish_comment
 - get: 404
 - post: 参数user_id, article_id, comment_id, comment, 其中, user_id是发表该评论的用户id; comment_id代表是被回复的评论的id, 如果没有置0, article_id代表被评论的文章. 如果评论发表成功, 后端发出成功提示信息，否则发送失败信息

@@ -1,9 +1,7 @@
-package com.neu.youdontknow.servlet.pages.articlepages;
+package com.neu.youdontknow.servlet.pages.article;
 
 import com.neu.youdontknow.admin.ArticleAdmin;
-import com.neu.youdontknow.admin.UserAdmin;
 import com.neu.youdontknow.models.Article;
-import com.neu.youdontknow.models.User;
 import com.neu.youdontknow.utils.GlobalUtils;
 
 import javax.servlet.http.HttpServlet;

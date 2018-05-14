@@ -44,7 +44,7 @@ public class ArticleService implements Service {
 
     public List<Article> getForumPage(String forum, int articleNum, int lastId) throws SQLException {
         if(forum.isEmpty() || null == forum || 0 == articleNum) {
-            GlobalUtils.alert("No article will back for the forum: " + forum);
+            GlobalUtils.alert("No article will be back for the forum: " + forum);
             return null;
         } else
             return new ArticleAdmin().queryByForum(forum, articleNum, lastId);

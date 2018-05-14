@@ -47,6 +47,12 @@ public class CommentAdmin {
         return queryRunner.query(sql, new BeanListHandler<>(Comment.class), commentId);
     }
 
+    public List<Comment> queryByArticleId(int articleId) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "select * from comment where article_id=?";
+        return queryRunner.query(sql, new BeanListHandler<>(Comment.class), articleId);
+    }
+
     public int updateById(int commentId, Comment tmp) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "update comment set comment=?, user_id=?, article_id=?, comment_id=? where id=?";

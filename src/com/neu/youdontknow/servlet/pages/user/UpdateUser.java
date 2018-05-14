@@ -1,11 +1,9 @@
-package com.neu.youdontknow.servlet.pages.userpages;
+package com.neu.youdontknow.servlet.pages.user;
 
 import com.neu.youdontknow.admin.UserAdmin;
 import com.neu.youdontknow.models.User;
-import com.neu.youdontknow.service.UserService;
 import com.neu.youdontknow.utils.GlobalUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
