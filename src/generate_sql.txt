@@ -24,4 +24,12 @@ create table article (
     published_date date,
     published_time time
 );
+
+create table message(
+    id int primary key auto_increment,
+    source int,
+    destination int not null,
+    message text not null,
+    time varchar(40)
+);
 show tables;
