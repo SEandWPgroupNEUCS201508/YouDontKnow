@@ -5,7 +5,7 @@ import com.neu.youdontknow.utils.DataBaseUtils;
 import com.neu.youdontknow.utils.GlobalUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
-
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -31,10 +31,10 @@ public class UserAdmin {
         return queryRunner.query(sql, new BeanListHandler<>(User.class), userId);
     }
 
-    public List<User> queryByUsername(String userName) throws SQLException {
+    public User queryByUsername(String userName) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "select * from user where username=?";
-        return queryRunner.query(sql, new BeanListHandler<>(User.class), userName);
+        return queryRunner.query(sql, new BeanHandler<>(User.class), userName);
     }
 
     public int updateById(int userId, User tmp) throws SQLException {

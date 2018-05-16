@@ -36,7 +36,7 @@ public class LoginFilter implements Filter {
             chain.doFilter(request, response);
         }else {
             // redirect to login page
-            servletResponse.sendRedirect("/login.html");
+            servletResponse.sendRedirect("./login.html");
         }
 
     }
