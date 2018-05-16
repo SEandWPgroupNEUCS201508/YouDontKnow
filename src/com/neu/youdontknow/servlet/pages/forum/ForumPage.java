@@ -22,16 +22,11 @@ public class ForumPage extends HttpServlet {
             GlobalUtils.alert("SQL err happend when get forum page!");
             e.printStackTrace();
         }
-        if(null == resList || resList.isEmpty()) {
-            response.getWriter().write("Error! Result set is empty!");
-            GlobalUtils.alert("Forum page is empty");
-        } else {
-            request.getSession().setAttribute("article_list", resList);
-            request.getSession().setAttribute("forum", "test");
-            request.getSession().setAttribute("last_id", Integer.MAX_VALUE);
-            request.getSession().setAttribute("limit_num", 10);
-            response.sendRedirect("./json_templates/forum.jsp");
-        }
+        request.getSession().setAttribute("article_list", resList);
+        request.getSession().setAttribute("forum", "test");
+        request.getSession().setAttribute("last_id", Integer.MAX_VALUE);
+        request.getSession().setAttribute("limit_num", 10);
+        response.sendRedirect("./json_templates/forum.jsp");
     }
 
     @Override
@@ -54,16 +49,11 @@ public class ForumPage extends HttpServlet {
                 GlobalUtils.alert("SQL err happend when get forum page!");
                 e.printStackTrace();
             }
-            if(null == resList || resList.isEmpty()) {
-                response.getWriter().write("Error! Result set is empty!");
-                GlobalUtils.alert("Forum page is empty");
-            } else {
-                request.getSession().setAttribute("article_list", resList);
-                request.getSession().setAttribute("forum", forum);
-                request.getSession().setAttribute("last_id", last_id);
-                request.getSession().setAttribute("limit_num", limit_num);
-                response.sendRedirect("./json_templates/forum.jsp");
-            }
+            request.getSession().setAttribute("article_list", resList);
+            request.getSession().setAttribute("forum", forum);
+            request.getSession().setAttribute("last_id", last_id);
+            request.getSession().setAttribute("limit_num", limit_num);
+            response.sendRedirect("./json_templates/forum.jsp");
         }
     }
 }

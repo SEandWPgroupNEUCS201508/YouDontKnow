@@ -48,7 +48,9 @@ public class UserService implements Service {
 
     public User login(String username, String password) throws SQLException, IOException {
         User user = new UserAdmin().queryByUsername(username);
-         if(false == GlobalUtils.checkPassword(password, user.getPassword())) {
+        if(user == null)
+            return null;
+        if(false == GlobalUtils.checkPassword(password, user.getPassword())) {
             return null;
         } else return user;
     }
