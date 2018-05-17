@@ -13,3 +13,8 @@
     <json:property name="username" value="${user.username}"/>
     <json:property name="email" value="${user.email}"/>
 </json:object>
+<%--{--%>
+    <%--"user_id": <%%>,--%>
+    <%--"username":<%%>,--%>
+    <%--"email":<% %> --%>
+<%--}--%>

@@ -50,7 +50,7 @@
     </filter>
     <filter-mapping>
         <filter-name>checkLogin</filter-name>
-        <url-pattern>/index.jsp</url-pattern>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
     <!--new interface-->

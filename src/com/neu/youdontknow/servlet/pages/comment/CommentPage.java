@@ -4,6 +4,7 @@ import com.neu.youdontknow.admin.CommentAdmin;
 import com.neu.youdontknow.models.Comment;
 import com.neu.youdontknow.utils.GlobalUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,25 +19,23 @@ public class CommentPage extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         int commentId = Integer.parseInt(request.getParameter("comment_id"));
         if(commentId <= 0) {
-            response.getWriter().write("Please check the format of the data you post!");
-            GlobalUtils.alert("Format ERR!");
+            response.getWriter().write("{}");
         } else {
             Comment comment = null;
             try {
                 comment = new CommentAdmin().queryById(commentId).get(0);
             } catch(SQLException e) {
-                response.getWriter().write("SQL err happen when query comment by their id");
+                response.getWriter().write("{}");
                 e.printStackTrace();
             }
             if(comment == null) {
-                GlobalUtils.alert("Can't find out the target!");
-                response.getWriter().write("Can't find out the target!");
+                response.getWriter().write("{}");
             } else {
-                request.getSession().setAttribute("comment", comment);
-                response.sendRedirect("./json_tempates/comment.jsp");
+                request.setAttribute("comment", comment);
+                request.getRequestDispatcher("./json_tempates/comment.jsp").forward(request, response);
             }
         }
     }

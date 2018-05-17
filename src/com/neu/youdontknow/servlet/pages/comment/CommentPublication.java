@@ -38,14 +38,13 @@ public class CommentPublication extends HttpServlet {
         try {
             tag = new CommentService().publish(comment);
         } catch (SQLException e) {
-            response.getWriter().write("Publish comment failed cause the sql err!");
-            GlobalUtils.alert("Publish comment failed cause the sql err!");
+            response.getWriter().write("{\"success\" : false}");
             e.printStackTrace();
         }
         if(tag == 1) { // success
-            response.getWriter().write("success");
+            response.getWriter().write("{\"success\" : true}");
         } else {
-            response.getWriter().write("Ooooops! Failed to publish comment");
+            response.getWriter().write("{\"success\" : false}");
         }
     }
 }

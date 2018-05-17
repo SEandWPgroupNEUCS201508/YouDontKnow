@@ -2,12 +2,9 @@ package com.neu.youdontknow.admin;
 
 import com.neu.youdontknow.models.User;
 import com.neu.youdontknow.utils.DataBaseUtils;
-import com.neu.youdontknow.utils.GlobalUtils;
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import java.sql.SQLException;
-import java.util.List;
 
 public class UserAdmin {
 
@@ -25,10 +22,10 @@ public class UserAdmin {
         return queryRunner.update(sql, userId);
     }
 
-    public List<User> queryById(int userId) throws SQLException {
+    public User queryById(int userId) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "select * from user where id=?";
-        return queryRunner.query(sql, new BeanListHandler<>(User.class), userId);
+        return queryRunner.query(sql, new BeanHandler<>(User.class), userId);
     }
 
     public User queryByUsername(String userName) throws SQLException {
