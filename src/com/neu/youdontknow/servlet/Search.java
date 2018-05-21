@@ -32,6 +32,19 @@ public class Search extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        String word = req.getParameter("word");
+        List<Article> resList = null;
+        try {
+            resList = new ArticleService().searchByWord(word);
+        } catch(Exception e) {
+            if(null == resList) {
+                resList = new ArrayList<Article>();
+            }
+            resList.clear();
+        }
+        resp.setContentType("text/jsp;charset=utf-8");
+        req.setAttribute("resList", resList);
+        req.setAttribute("word", word);
+        req.getRequestDispatcher("./json_templates/search_article.jsp").forward(req, resp);
     }
 }
