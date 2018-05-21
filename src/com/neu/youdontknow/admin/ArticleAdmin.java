@@ -1,6 +1,7 @@
 package com.neu.youdontknow.admin;
 
 import com.neu.youdontknow.models.Article;
+import com.neu.youdontknow.models.User;
 import com.neu.youdontknow.utils.DataBaseUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -64,10 +65,23 @@ public class ArticleAdmin {
         return queryRunner.query(sql, new BeanListHandler<>(Article.class), articleId);
     }
 
+    public List<Article> quertByTitle(String title) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        String sql = "select * from article where title=?";
+        return queryRunner.query(sql, new BeanListHandler<>(Article.class), title);
+    }
+
     public List<Article> queryByForum(String forum, int num, int lastId) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "select * from article where forum=? and id<? order by id desc limit ?";
         return queryRunner.query(sql, new BeanListHandler<>(Article.class), forum, lastId, num);
+    }
+
+    public List<Article> queryByUsername(String username) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
+        User user = new UserAdmin().queryByUsername(username);
+        String sql = "select * from article where user_id=?";
+        return queryRunner.query(sql, new BeanListHandler<>(Article.class), user.getId());
     }
 
     /**

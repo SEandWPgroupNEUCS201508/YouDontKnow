@@ -108,6 +108,13 @@
         <url-pattern>/update_article</url-pattern>
     </servlet-mapping>
 
+    <!--### 查询文章-->
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class></servlet-class>
+    </servlet>
+
+
     <!--################################ comment service ###########################-->
 
     <!--### 获取某文章下评论列表-->
