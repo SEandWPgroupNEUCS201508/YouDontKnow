@@ -21,23 +21,21 @@ public class ArticlePublication extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("UTF-8");
         Article article = new Article();
+        response.setCharacterEncoding("utf-8");
         try {
             BeanUtils.populate(article, request.getParameterMap());
-            // test
             if(null == article) {
-                GlobalUtils.alert("Can't get article from request!");
+                response.getWriter().print("{\"success\" : false}");
             } else {
                 article.setPublished_date(new Date(System.currentTimeMillis()));
                 article.setPublished_time(new Time(System.currentTimeMillis()));
             }
-            int state = new ArticleService().publish(article);
-            if(1 == state) { // success
-                response.getWriter().print("success to publish the article");
+            if(new ArticleService().publish(article) == 1) { // success
+                response.getWriter().print("{\"success\" : true}");
             } else {
-                response.getWriter().print("failed to publish article");
-                GlobalUtils.alert("failed to publish article");
+                response.getWriter().print("{\"success\" : false}");
             }
         } catch (Exception e) {
             e.printStackTrace();

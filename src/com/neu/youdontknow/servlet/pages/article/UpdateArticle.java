@@ -29,29 +29,25 @@ public class UpdateArticle extends HttpServlet {
 
         if(newTitle == null || newTitle.isEmpty() || newContent == null || newContent.isEmpty() ||
                 article_id <= 0 || forum.isEmpty() || forum == null) {
-            response.getWriter().write("Please check the data you post!");
-            GlobalUtils.alert("Post data for updating article err!");
+            response.getWriter().write("{\"success\" : false}");
         }
 
         Article target = null;
-
         try {
             target = new ArticleAdmin().queryById(article_id).get(0);
         } catch(SQLException e) {
-            GlobalUtils.alert("Failed to get update target article from database");
-            response.getWriter().write("Failed to get update target article from database");
+            response.getWriter().write("{\"success\" : false}");
             e.printStackTrace();
         }
         if(article_id <= 0 || target == null)
-            response.getWriter().write("Can't find out the article");
+            response.getWriter().write("{\"success\" : false}");
         else {
             if(newTitle == null || newTitle.isEmpty())
-                response.getWriter().write("Warning! New title is empty or null!");
+                response.getWriter().write("{\"success\" : false}");
             else if(newContent == null || newContent.isEmpty())
-                response.getWriter().write("Warning! New content is empty or null!");
+                response.getWriter().write("{\"success\" : false}");
             else if(forum == null || forum.isEmpty())
-                response.getWriter().write("Warning! New forum you set may be empty!");
-
+                response.getWriter().write("{\"success\" : false}");
             target.setForum(forum);
             target.setContent(newContent);
             target.setTitle(newTitle);
@@ -60,15 +56,13 @@ public class UpdateArticle extends HttpServlet {
             try {
                 flag = new ArticleAdmin().updateById(article_id, target);
             } catch(SQLException e) {
-                response.getWriter().write("Update article failed cause sql err!");
-                GlobalUtils.alert("Update article failed cause sql err!");
+                response.getWriter().write("{\"success\" : false}");
                 e.printStackTrace();
             }
             if(1 == flag) { // success
-                response.getWriter().write("success to update the article");
+                response.getWriter().write("{\"success\" : true}");
             } else {
-                GlobalUtils.alert("Update article failed cause unknown err");
-                response.getWriter().write("Update article failed cause unknown err");
+                response.getWriter().write("{\"success\" : false}");
             }
         }
     }

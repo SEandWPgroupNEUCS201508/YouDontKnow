@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="application/json;charset=UTF-8" language="java" %>
 <%
-    Comment comment = (Comment)(request.getSession().getAttribute("comment"));
-    request.getSession().removeAttribute("comment");
+    Comment comment = (Comment)(request.getAttribute("comment"));
+    request.removeAttribute("comment");
 %>
 {
     "user_id":<%out.print(comment.getUser_id());%>,

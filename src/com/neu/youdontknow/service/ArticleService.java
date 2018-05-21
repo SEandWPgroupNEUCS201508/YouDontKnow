@@ -50,6 +50,15 @@ public class ArticleService implements Service {
             return new ArticleAdmin().queryByForum(forum, articleNum, lastId);
     }
 
+    public List<Article> searchByWord(String word) throws SQLException {
+        List<Article> resList = null;
+        ArticleAdmin articleDAO = new ArticleAdmin();
+        resList.addAll(articleDAO.quertByTitle(word));
+        resList.addAll(articleDAO.queryByUsername(word));
+        resList.addAll(articleDAO.queryByForum(word, 100, Integer.MAX_VALUE));
+        return resList;
+    }
+
     // private func
 
     private int publishArticle(Article article) throws SQLException {

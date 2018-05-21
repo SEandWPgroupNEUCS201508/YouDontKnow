@@ -24,20 +24,19 @@ public class UpdateUser extends HttpServlet {
         User target = null;
 
         try {
-            target = new UserAdmin().queryById(user_id).get(0);
+            target = new UserAdmin().queryById(user_id);
         } catch(SQLException e) {
-            GlobalUtils.alert("Failed to get update target user from database");
             e.printStackTrace();
         }
         if(user_id <= 0 || target == null)
-            response.getWriter().write("Can't find out the user");
+            response.getWriter().write("{\"success\" : false}");
         else if(GlobalUtils.checkPassword(origin_password, target.getPassword()) != true)
-            response.getWriter().write("Password err! Unable to update!");
+            response.getWriter().write("{\"success\" : false}");
         else {
             if(new_email == null || new_email.isEmpty())
-                response.getWriter().write("Warning! new_email is null or empty!");
+                response.getWriter().write("{\"success\" : false}");
             if(new_password == null || new_password.isEmpty())
-                response.getWriter().write("Warning! new_password is null or empty!");
+                response.getWriter().write("{\"success\" : false}");
             target.setPassword(GlobalUtils.encryptPassword(new_password));
             target.setEmail(new_email);
 
@@ -45,15 +44,13 @@ public class UpdateUser extends HttpServlet {
             try {
                 flag = new UserAdmin().updateById(user_id, target);
             } catch(SQLException e) {
-                response.getWriter().write("Update user failed cause sql err!");
-                GlobalUtils.alert("Update user failed cause sql err!");
+                response.getWriter().write("{\"success\" : false}");
                 e.printStackTrace();
             }
             if(1 == flag) { // success
-                response.getWriter().write("success to update the user");
+                response.getWriter().write("{\"success\" : true}");
             } else {
-                GlobalUtils.alert("Update user failed cause unknown err");
-                response.getWriter().write("Update user failed cause unknown err");
+                response.getWriter().write("{\"success\" : false}");
             }
         }
     }

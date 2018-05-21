@@ -27,16 +27,13 @@ public class LoginFilter implements Filter {
         HttpServletRequest servletRequest = (HttpServletRequest) request;
         HttpServletResponse servletResponse = (HttpServletResponse) response;
         HttpSession session = servletRequest.getSession();
+        String path = servletRequest.getRequestURI();
+        boolean hasLogin = !(session.getAttribute("user")==null);
 
-        boolean hasLogin = session.getAttribute("user")==null?false:true;
-
-        // judge whether the user has logged in
-        if (hasLogin) {
-            // go on this request
+        if (hasLogin || path.contains("/login") || path.contains("/register")) {
             chain.doFilter(request, response);
         }else {
-            // redirect to login page
-            servletResponse.sendRedirect("/login.html");
+            servletResponse.sendRedirect("./login.html");
         }
 
     }

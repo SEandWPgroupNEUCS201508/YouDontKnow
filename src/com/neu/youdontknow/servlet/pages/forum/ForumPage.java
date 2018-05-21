@@ -4,6 +4,7 @@ import com.neu.youdontknow.models.Article;
 import com.neu.youdontknow.service.ArticleService;
 import com.neu.youdontknow.utils.GlobalUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class ForumPage extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<Article> resList = null;
         try {
             resList = new ArticleService().getForumPage("test", 10, Integer.MAX_VALUE);
@@ -22,20 +23,15 @@ public class ForumPage extends HttpServlet {
             GlobalUtils.alert("SQL err happend when get forum page!");
             e.printStackTrace();
         }
-        if(null == resList || resList.isEmpty()) {
-            response.getWriter().write("Error! Result set is empty!");
-            GlobalUtils.alert("Forum page is empty");
-        } else {
-            request.getSession().setAttribute("article_list", resList);
-            request.getSession().setAttribute("forum", "test");
-            request.getSession().setAttribute("last_id", Integer.MAX_VALUE);
-            request.getSession().setAttribute("limit_num", 10);
-            response.sendRedirect("./json_templates/forum.jsp");
-        }
+        request.setAttribute("article_list", resList);
+        request.setAttribute("forum", "test");
+        request.setAttribute("last_id", Integer.MAX_VALUE);
+        request.setAttribute("limit_num", 10);
+        request.getRequestDispatcher("./json_templates/forum.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/jsp;charset=utf-8");
 
         String forum = request.getParameter("forum");
@@ -54,16 +50,11 @@ public class ForumPage extends HttpServlet {
                 GlobalUtils.alert("SQL err happend when get forum page!");
                 e.printStackTrace();
             }
-            if(null == resList || resList.isEmpty()) {
-                response.getWriter().write("Error! Result set is empty!");
-                GlobalUtils.alert("Forum page is empty");
-            } else {
-                request.getSession().setAttribute("article_list", resList);
-                request.getSession().setAttribute("forum", forum);
-                request.getSession().setAttribute("last_id", last_id);
-                request.getSession().setAttribute("limit_num", limit_num);
-                response.sendRedirect("./json_templates/forum.jsp");
-            }
+            request.setAttribute("article_list", resList);
+            request.setAttribute("forum", forum);
+            request.setAttribute("last_id", Integer.MAX_VALUE);
+            request.setAttribute("limit_num", 10);
+            request.getRequestDispatcher("./json_templates/forum.jsp").forward(request, response);
         }
     }
 }

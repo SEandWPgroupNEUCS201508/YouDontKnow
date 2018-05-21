@@ -47,15 +47,12 @@ public class UserService implements Service {
     // public service method
 
     public User login(String username, String password) throws SQLException, IOException {
-        UserAdmin userAdmin = new UserAdmin();
-        List<User> user = userAdmin.queryByUsername(username);
-        // if more than one users have the same username
-        if(user.size() != 1) {
-            GlobalUtils.raiseSQLError("More than one users have the same username, WTF?");
-        } else if(false == GlobalUtils.checkPassword(password, user.get(0).getPassword())) {
-            GlobalUtils.alert("Password error");
-        } else return user.get(0);
-        return null; // satisfy the Compiler
+        User user = new UserAdmin().queryByUsername(username);
+        if(user == null)
+            return null;
+        if(false == GlobalUtils.checkPassword(password, user.getPassword())) {
+            return null;
+        } else return user;
     }
 
     public int register(User newUser) throws SQLException {

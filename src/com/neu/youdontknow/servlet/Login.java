@@ -16,37 +16,30 @@ public class Login extends HttpServlet {
     @Override
     protected  void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // accept the username and password from frontend
+        request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        User user = null;
 
-        if(null == username || null == password || password.isEmpty() || username.isEmpty()) {
-            GlobalUtils.alert("Username or password is empty");
+        try {
+            user = new UserService().login(username, password);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(null != user) {
+            request.getSession().setAttribute("user", user);
+            Cookie userId = new Cookie("userid", new Integer(user.getId()).toString());
+            response.addCookie(userId);
+            response.getWriter().print("{\"success\":true}");
         } else {
-            User user = null;
-
-            try {
-                user = new UserService().login(username, password);
-            } catch(SQLException e) {
-                e.printStackTrace();
-            }
-
-            if(null != user) {
-                request.getSession().setAttribute("user", user);
-                Cookie userId = new Cookie("userid", new Integer(user.getId()).toString());
-                response.addCookie(userId);
-                response.sendRedirect("/index.jsp");
-            } else {
-                GlobalUtils.alert("User is not found when login");
-                response.sendRedirect("/login.html");
-            }
-
+            response.getWriter().print("{\"success\":false}");
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=utf-8");
-        response.sendRedirect("./login.html");
+        doPost(request, response);
     }
 }

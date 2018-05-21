@@ -44,14 +44,14 @@
     </servlet-mapping>
 
 
-    <filter>
-        <filter-name>checkLogin</filter-name>
-        <filter-class>com.neu.youdontknow.utils.LoginFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>checkLogin</filter-name>
-        <url-pattern>/index.jsp</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>checkLogin</filter-name>-->
+        <!--<filter-class>com.neu.youdontknow.utils.LoginFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>checkLogin</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <!--new interface-->
     <!--############################## user service #########################-->
@@ -107,6 +107,13 @@
         <servlet-name>update_article</servlet-name>
         <url-pattern>/update_article</url-pattern>
     </servlet-mapping>
+
+    <!--### 查询文章-->
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class></servlet-class>
+    </servlet>
+
 
     <!--################################ comment service ###########################-->
 
