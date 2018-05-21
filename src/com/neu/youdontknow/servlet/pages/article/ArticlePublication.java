@@ -21,11 +21,11 @@ public class ArticlePublication extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        request.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("UTF-8");
         Article article = new Article();
+        response.setCharacterEncoding("utf-8");
         try {
             BeanUtils.populate(article, request.getParameterMap());
-            // test
             if(null == article) {
                 response.getWriter().print("{\"success\" : false}");
             } else {

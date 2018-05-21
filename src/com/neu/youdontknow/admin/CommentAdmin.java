@@ -13,7 +13,7 @@ public class CommentAdmin {
     public int addComment(Comment comment) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(DataBaseUtils.getDataSource());
         String sql = "insert into " +
-                "comment(comment, user_id, article_id, comment_id, published_date, publised_time) " +
+                "comment(comment, user_id, article_id, comment_id, published_date, published_time) " +
                 "values(?, ?, ?, ?, ?, ?)";
         return queryRunner.update(sql,
                 comment.getComment(), comment.getUser_id(), comment.getArticle_id(), comment.getComment_id(),

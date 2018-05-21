@@ -44,14 +44,14 @@
     </servlet-mapping>
 
 
-    <filter>
-        <filter-name>checkLogin</filter-name>
-        <filter-class>com.neu.youdontknow.utils.LoginFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>checkLogin</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>checkLogin</filter-name>-->
+        <!--<filter-class>com.neu.youdontknow.utils.LoginFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>checkLogin</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <!--new interface-->
     <!--############################## user service #########################-->

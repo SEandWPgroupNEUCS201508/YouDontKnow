@@ -21,6 +21,7 @@ public class CommentPublication extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        user_id, article_id, comment_id, comment
+        request.setCharacterEncoding("UTF-8");
         int userId = Integer.parseInt(request.getParameter("user_id"));
         int articleId = Integer.parseInt(request.getParameter("article_id"));
         int commentId = Integer.parseInt(request.getParameter("comment_id"));
@@ -38,7 +39,7 @@ public class CommentPublication extends HttpServlet {
         try {
             tag = new CommentService().publish(comment);
         } catch (SQLException e) {
-            response.getWriter().write("{\"success\" : false}");
+//            response.getWriter().write("{\"success\" : false}");
             e.printStackTrace();
         }
         if(tag == 1) { // success

@@ -15,9 +15,7 @@
 {
 "article_id":<%out.print(article_id);%>,
 "comment_list": [<%
-    if(comments == null || comments.isEmpty()){
-        out.print("null");
-    }else{
+    if(comments != null && !comments.isEmpty()){
         for(Comment comment: comments) {
             out.print('{');
             out.print("\"user_id\":");

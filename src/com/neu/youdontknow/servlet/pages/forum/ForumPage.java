@@ -51,7 +51,7 @@ public class ForumPage extends HttpServlet {
                 e.printStackTrace();
             }
             request.setAttribute("article_list", resList);
-            request.setAttribute("forum", "test");
+            request.setAttribute("forum", forum);
             request.setAttribute("last_id", Integer.MAX_VALUE);
             request.setAttribute("limit_num", 10);
             request.getRequestDispatcher("./json_templates/forum.jsp").forward(request, response);

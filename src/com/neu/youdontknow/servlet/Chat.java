@@ -28,9 +28,10 @@ public class Chat {
      */
     @OnOpen
     public void onOpen(Session session, EndpointConfig config){
-        System.out.println("user is comming");
+//        System.out.println("user is comming");
         User user = (User)((HttpSession)(config.getUserProperties().get("httpSession"))).getAttribute("user");
         if(user != null){
+            System.out.println("add one user");
             connections.put(new Integer(user.getId()),session);
             List<Message> messages =  new MessageService().queryMessage(user.getId());
             for(int index = 0; index < messages.size(); index++){
