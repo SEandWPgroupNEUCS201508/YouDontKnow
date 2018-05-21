@@ -42,7 +42,7 @@
 - post: 如果找到了，会返回一个json(user_profile.jsp)，如果找到该用户返回该用户的所有信息
 ```json
 {
-	"user_id": id,
+	"user_id": 1,
     "username": "eg",
     "email":"email"
 }
@@ -66,8 +66,8 @@
 ```json
 {
     "forum":"test",
-    "pre_last_id":num,
-    "limit_num":num,
+    "pre_last_id":100000,
+    "limit_num":10,
     "article_node_list":[{
         "user_id":1,
         "article_id":1,
@@ -95,6 +95,25 @@
 - url:http://server_addr:port/update_article
 - get:404
 - post: 参数title,content,article_id,forum 如果修改文章成功返回成功提示信息
+
+#### 查询文章 
+- url:http://server_addr:port/search
+- get: 参数word也就是搜索关键词
+- post: 参数word也就是搜索关键词
+- 说明: 所谓的word也就是关键字了，本来想写根据user_id或者article_id来查询的，但是换位思考一下，如果你是用户，后端要求你用id来查询，你会不会觉得这个站长特别shaby？反正我打算只让前端传文本了，我目前会根据标题，作者或者板块 来较为精确匹配这个关键字。等以后有时间了，再做匹配内容的模糊搜索。**word精确匹配作者名字、文章标题、板块！**虽然板块在前端是中文的，在后端数据库中是以英文存储的，**但是后端不负责把中文翻译成英文！**查询到的结果会以以下格式的json返回
+```json
+{
+    "search_word":"word",
+    "search_result":[{
+        "user_id":1,
+        "article_id":0,
+        "title":"search res",
+        "content":"text",
+        "published_date":"date",
+        "published_time":"time"
+    }]
+}
+```
 
 ### for comment service
 #### 获取某文章下评论列表 done without testing
